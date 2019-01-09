@@ -14,12 +14,12 @@ class App extends Component {
 		
 		this.state = {
 			videos: [],
+			searchResults: [],
 			selectedVideo: null
 		}
-
-		this.searchTerm('popular videos');
+		this.setTerm('web development');
 	}
-	searchTerm(term) {
+	setTerm(term) {
 		YTsearch({key: keys.api_key, term: term, limit: 15}, (videos) => {
 			this.setState({
 				videos: videos,
@@ -27,12 +27,31 @@ class App extends Component {
 			});
 		})
 	}
+	// setCurrent(video, videos) {
+	// 	console.log(video)
+	// 	console.log(videos)
+	// }
+	searchTerm(term) {
+		if (term) {
+			YTsearch({key: keys.api_key, term: term, limit: 10}, (videos) => {
+				this.setState ({
+					searchResults: videos
+				})
+			})
+		} else {
+			this.setState ({
+				searchResults: []
+			})
+		}
+	}
 	render() {
-	// const videoSearch = _lodash.debounce((term) => {this.searchTerm(term)},300);
 	return 	<div className="container">
 				<div className="row">
 					<div className="col-lg-8">
-						<SearchBar newSearch={(term) => this.searchTerm(term)}/>
+						<SearchBar 
+							newSearch={(term) => this.searchTerm(term)}
+							searchResults={this.state.searchResults}
+						/>
 						<VideoDetail video={this.state.selectedVideo}/>
 					</div>
 					<div className="col-lg-4">
