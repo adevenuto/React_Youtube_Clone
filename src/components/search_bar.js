@@ -1,33 +1,43 @@
 import React from 'react';
 import {debounce} from 'lodash';
-import SearchList from './search_list';
+import SearchItem from './search_Item';
 
 const SearchBar = (props) => {
-	const search = (e) => {
+	const searchByTerm = (e, term) => {
 		if (e.key === 'Enter') {
-			props.setCurrentVideo(e.target.value);
+			console.log('hello')
+			props.searchByTerm(term);
 		}
 	}
-	const apiSearch = debounce((e) => {
-		// props.newSearch(e.target.value);
-		console.log('hello')
-	}, 200)
-	const searchList = props.searchResults.map((video) => {
-		return 	<SearchList
+	const apiSearch = debounce((value) => {
+		props.newSearch(value);
+	}, 100)
+	const SearchListItem = props.searchResults.map((video) => {
+		return 	<SearchItem
+					currentVideo={props.setCurrent}
+					video={video}
 					videoTitle={video.snippet.title}
 					key={video.etag}
 				/>
 	})
-	return	<div className="form-group">
+
+	return	<div id="searchBar" className="form-group">
 				<label className="sr-only" htmlFor="searchBar">Search</label>
-				<div className="input-group mb-2 mr-sm-2">	
-					<input onKeyPress={search} onChange={apiSearch} type="text" className="form-control" id="searchBar" placeholder="Search"/>
+				<div className="input-group mr-sm-2">	
+					<input 
+						onKeyPress={(e) => searchByTerm(e, e.target.value)} 
+						onInput={(e) => apiSearch(e.target.value)} 
+						type="text" 
+						className="form-control" 
+						id="searchBar" 
+						placeholder="Search"
+					/>
 					<div className="input-group-append">
 						<div className="input-group-text">@</div>
 					</div>
 				</div>
-				<ul>
-					{searchList}
+				<ul className="searchList">
+					{SearchListItem}
 				</ul>
 			</div>
 }

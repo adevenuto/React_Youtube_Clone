@@ -5,58 +5,87 @@ import ReactDOM from 'react-dom';
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
-import YTsearch from 'youtube-api-search';
-import keys from './config/keys';
+import axios from 'axios';
 
+import keys from './config/keys';
 class App extends Component {
 	constructor(props) {
 		super(props);
-		
 		this.state = {
 			videos: [],
 			searchResults: [],
 			selectedVideo: null
 		}
-		this.setTerm('web development');
+		this.youtubeApi = this.youtubeApi.bind(this);
+		this.searchApi = this.searchApi.bind(this);
+		this.setInitial('react js');
 	}
-	setTerm(term) {
-		YTsearch({key: keys.api_key, term: term, limit: 15}, (videos) => {
-			this.setState({
-				videos: videos,
-				selectedVideo: videos[0]
-			});
-		})
+	youtubeApi(term) {
+		const ROOT_URL = 'https://www.googleapis.com/youtube/v3/search';
+		const params = {
+			part: 'snippet',
+			key: keys.api_key,
+			q: term,
+			type: 'video',
+			maxResults: 15
+		};				
+		let data = axios.get(ROOT_URL, { params: params })
+		.then(function(response) {
+			return response.data.items;
+		}).catch(function(error) {
+			console.error(error);
+		});
+		return data;
 	}
-	// setCurrent(video, videos) {
-	// 	console.log(video)
-	// 	console.log(videos)
-	// }
-	searchTerm(term) {
-		if (term) {
-			YTsearch({key: keys.api_key, term: term, limit: 10}, (videos) => {
-				this.setState ({
-					searchResults: videos
-				})
-			})
+	async setInitial(term) {
+		let videos = await this.youtubeApi(term);
+		this.setState({
+			videos: videos,
+			selectedVideo: videos[0],
+			searchResults: []
+		});
+	}
+	async searchApi(term) {
+		if (!term) {
+			this.setState({searchResults: []});
 		} else {
-			this.setState ({
-				searchResults: []
-			})
+			let videos = await this.youtubeApi(term);
+			this.setState({searchResults: videos});
 		}
 	}
+	setVideoFromSearch(video) {
+		document.getElementById('searchBar').value = '';
+		this.setState({
+			videos: this.state.searchResults,
+			selectedVideo: video,
+			searchResults: []
+		});
+	}
+	async setVideoFromListItem(video) {
+		let newVideos = await this.youtubeApi(video.snippet.title);
+		document.getElementById('searchBar').value = '';
+		this.setState({
+			videos: newVideos,
+			selectedVideo: video,
+			searchResults: []
+		});
+	}
+	
 	render() {
 	return 	<div className="container">
 				<div className="row">
 					<div className="col-lg-8">
 						<SearchBar 
-							newSearch={(term) => this.searchTerm(term)}
+							newSearch={term => this.searchApi(term)}
 							searchResults={this.state.searchResults}
+							setCurrent={video => this.setVideoFromSearch(video)}
+							searchByTerm={term => this.setInitial(term)}
 						/>
 						<VideoDetail video={this.state.selectedVideo}/>
 					</div>
 					<div className="col-lg-4">
 						<VideoList 
-							onVideoSelect={selectedVideo => this.setState({selectedVideo}) }
+							onVideoSelect={video => this.setVideoFromListItem(video)}
 							videos={this.state.videos}
 						/>	
 					</div>
