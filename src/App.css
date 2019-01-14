@@ -50,3 +50,9 @@ body {
     cursor: pointer;
     font-weight: bold;
 }
+
+@media only screen and (max-width: 767px) {
+	#videoPlayer iframe {
+	  	height: 250px
+	}
+}

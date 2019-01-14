@@ -6,7 +6,7 @@ const videoDetail = ({video}) => {
 	} else {
 	const videoId = video.id.videoId;
 	const videoUrl = `https://www.youtube.com/embed/${videoId}`;
-	return 	<div className="video-detail">
+	return 	<div id="videoPlayer">
 				<div className="video-detail">
 					<iframe
 						title="youtube video frame" 
