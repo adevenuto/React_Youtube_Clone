@@ -4,23 +4,23 @@ self.__precacheManifest = [
     "url": "/react_youtube_clone/static/js/runtime~main.1db9c008.js"
   },
   {
-    "revision": "28eaad2ec9f4a6c869e5",
-    "url": "/react_youtube_clone/static/js/main.28eaad2e.chunk.js"
+    "revision": "29a80a7e7d39633c246f",
+    "url": "/react_youtube_clone/static/js/main.29a80a7e.chunk.js"
   },
   {
     "revision": "d134149590c25c27acff",
     "url": "/react_youtube_clone/static/js/1.d1341495.chunk.js"
   },
   {
-    "revision": "28eaad2ec9f4a6c869e5",
-    "url": "/react_youtube_clone/static/css/main.e2bf6bda.chunk.css"
+    "revision": "29a80a7e7d39633c246f",
+    "url": "/react_youtube_clone/static/css/main.3891036e.chunk.css"
   },
   {
     "revision": "d134149590c25c27acff",
     "url": "/react_youtube_clone/static/css/1.83052501.chunk.css"
   },
   {
-    "revision": "372f9a98d31e8d8b0ef6e1599c98d9f5",
+    "revision": "36918ecf1e0c93721e86c05adcda1ac6",
     "url": "/react_youtube_clone/index.html"
   }
 ];
