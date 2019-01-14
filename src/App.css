@@ -55,4 +55,11 @@ body {
 	#videoPlayer iframe {
 	  	height: 250px
 	}
+	#searchBar .searchList li {
+		padding: 3px 13px;
+		font-size: .75rem;
+	}
+	#searchBar .searchList {
+		width: 100%;
+	}
 }
