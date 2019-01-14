@@ -29,7 +29,7 @@ const SearchBar = (props) => {
 						onInput={(e) => apiSearch(e.target.value)} 
 						type="text" 
 						className="form-control" 
-						id="searchBar" 
+						id="searchInput" 
 						placeholder="Search"
 					/>
 					<div className="input-group-append">

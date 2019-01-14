@@ -55,7 +55,7 @@ class App extends Component {
 		}
 	}
 	setVideoFromSearch(video) {
-		document.getElementById('searchBar').value = '';
+		document.getElementById('searchInput').value = '';
 		this.setState({
 			videos: this.state.searchResults,
 			selectedVideo: video,
@@ -64,7 +64,7 @@ class App extends Component {
 	}
 	async setVideoFromListItem(video) {
 		let newVideos = await this.youtubeApi(video.snippet.title);
-		document.getElementById('searchBar').value = '';
+		document.getElementById('searchInput').value = '';
 		this.setState({
 			videos: newVideos,
 			selectedVideo: video,
