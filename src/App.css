@@ -63,6 +63,7 @@ body {
 		width: 100%;
 	}
 	#app .container {
-		width: 100%;
+		padding-right: 0;
+    	padding-left: 0;
 	}
 }
