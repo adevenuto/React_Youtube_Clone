@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/react_youtube_clone/static/css/1.83052501.chunk.css"
   },
   {
-    "revision": "765f07ac1fea3b9a09ccf45c7929d569",
+    "revision": "372f9a98d31e8d8b0ef6e1599c98d9f5",
     "url": "/react_youtube_clone/index.html"
   }
 ];
