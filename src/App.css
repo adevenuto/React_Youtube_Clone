@@ -62,4 +62,7 @@ body {
 	#searchBar .searchList {
 		width: 100%;
 	}
+	#app .container {
+		width: 100%;
+	}
 }
