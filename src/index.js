@@ -27,6 +27,7 @@ class App extends Component {
 			key: keys.api_key,
 			q: term,
 			type: 'video',
+			order: 'viewCount',
 			maxResults: 15
 		};				
 		let data = axios.get(ROOT_URL, { params: params })

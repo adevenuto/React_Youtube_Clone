@@ -17,7 +17,7 @@ const videoDetail = ({video}) => {
 						src={videoUrl} 
 						className="embeded-responsive-item" 
 						width="100%" 
-						height="350px"
+						height="500px"
 					></iframe>
 				</div>
 				<div className="details mb-2">

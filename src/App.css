@@ -21,6 +21,12 @@ body {
 #searchBar {
 	position: relative;
 }
+#searchBar .input-group-text {
+	border-radius: 0;
+	border: none;
+	background-color: #444;
+	cursor: pointer;
+}
 #searchBar input {
 	-webkit-appearance: none;
     box-shadow: none;
@@ -30,14 +36,17 @@ body {
 #searchBar .searchList {
 	position: absolute;
     background: #fff;
+    z-index: 10;
     padding: 0;
     color: #333;
     list-style: none;
-    width: 90%;
+	width: 80%;
+	margin-top: 5px;
 }
 #searchBar .searchList li {
 	text-decoration: none;
     padding: 5px 13px;
-    border-bottom: 1px Solid #f1f1f1;
     font-size: .9rem;
+    cursor: pointer;
+    font-weight: bold;
 }
